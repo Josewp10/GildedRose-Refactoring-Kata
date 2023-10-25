@@ -88,3 +88,14 @@ describe("Backstage passes", function() {
   });
 
 });
+
+describe("Conjured Items", function() {
+
+  it("Degrade in Quality twice as fast as normal items", function() {
+    let initialQuality = 10;
+    const gildedRose = new Shop([ new Item('Conjured', 10, initialQuality) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(initialQuality-2);
+  });
+
+});
