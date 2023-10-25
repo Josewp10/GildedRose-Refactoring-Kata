@@ -27,14 +27,14 @@ class Shop {
     for (let i = 0; i < this.items.length; i++) {
       const currentItem = this.items[i];
 
-      if (currentItem.name !== 'Aged Brie' && currentItem.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-        if (currentItem.name !== 'Sulfuras, Hand of Ragnaros') {
+      if (currentItem.name != 'Aged Brie' && currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
           this.decreaseQuality(currentItem);
         }
       } else {
         this.increaseQuality(currentItem);
 
-        if (currentItem.name === 'Backstage passes to a TAFKAL80ETC concert') {
+        if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
           if (currentItem.sellIn < 11) {
             this.increaseQuality(currentItem);
           }
@@ -45,14 +45,14 @@ class Shop {
         }
       }
 
-      if (currentItem.name !== 'Sulfuras, Hand of Ragnaros') {
+      if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
         currentItem.sellIn--;
       }
 
       if (currentItem.sellIn < 0) {
-        if (currentItem.name !== 'Aged Brie') {
-          if (currentItem.name !== 'Backstage passes to a TAFKAL80ETC concert') {
-            if (currentItem.name !== 'Sulfuras, Hand of Ragnaros') {
+        if (currentItem.name != 'Aged Brie') {
+          if (currentItem.name != 'Backstage passes to a TAFKAL80ETC concert') {
+            if (currentItem.name != 'Sulfuras, Hand of Ragnaros') {
               this.decreaseQuality(currentItem);
             }
           } else {
