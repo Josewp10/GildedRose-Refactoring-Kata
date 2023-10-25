@@ -32,3 +32,19 @@ describe("Aged Brie actually increases in Quality the older it gets", function()
   });
 
 });
+
+describe("Based on the he Quality of an item", function() {
+
+  it("Should fail if the quality is more than 50", function() {
+    const gildedRose = new Shop([ new Item("foo", 0, 53) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.lessThanOrEqual(50)
+  });
+
+  it("Should fail if the quality is negative", function() {
+    const gildedRose = new Shop([ new Item("Negative", 0, -1) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.not.be.lessThan(0)
+  });
+  
+});
