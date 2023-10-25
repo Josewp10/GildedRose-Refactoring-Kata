@@ -35,16 +35,16 @@ describe("Aged Brie actually increases in Quality the older it gets", function()
 
 describe("Based on the he Quality of an item", function() {
 
-  it("Should fail if the quality is more than 50", function() {
-    const gildedRose = new Shop([ new Item("foo", 0, 53) ]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.lessThanOrEqual(50)
-  });
-
   it("Should fail if the quality is negative", function() {
     const gildedRose = new Shop([ new Item("Negative", 0, -1) ]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.not.be.lessThan(0)
+  });
+  
+  it("Should fail if the quality is more than 50", function() {
+    const gildedRose = new Shop([ new Item("foo", 0, 53) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.lessThanOrEqual(50)
   });
   
 });
@@ -65,9 +65,9 @@ describe("Sulfuras, being a legendary item, never has to be sold or decreases in
 });
 
 describe("Backstage passes", function() {
-
-  it("should foo", function() {
-    const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 12, 10) ]);
+  const description = `Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but Quality drops to 0 after the concert`
+  it(description, function() {
+    const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 12, 11) ]);
     let items = gildedRose.items;
     let sellDays,pQuality;
     
@@ -76,9 +76,9 @@ describe("Backstage passes", function() {
       items = gildedRose.updateQuality();
       sellDays = items[0].sellIn;
 
-      if(sellDays > 5 && sellDays <= 10) {
+      if(sellDays > 5 && sellDays < 10) {
         expect(items[0].quality).to.equal(pQuality+2);
-      }else if(sellDays >=0 && sellDays <= 5){
+      }else if(sellDays >=0 && sellDays < 5){
         expect(items[0].quality).to.equal(pQuality+3);
       }else if(sellDays<0){
         expect(items[0].quality).to.equal(0);
