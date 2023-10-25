@@ -21,3 +21,14 @@ describe("Once the sell-by date has passed, Quality degrades twice as fast", fun
   });
 
 });
+
+describe("Aged Brie actually increases in Quality the older it gets", function() {
+
+  it("Should increase the quality", function() {
+    let initialQuality = 0;
+    const gildedRose = new Shop([ new Item('Aged Brie', 0, initialQuality) ]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.be.above(initialQuality);
+  });
+
+});
