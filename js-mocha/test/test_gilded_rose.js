@@ -48,3 +48,19 @@ describe("Based on the he Quality of an item", function() {
   });
   
 });
+
+describe("Sulfuras, being a legendary item, never has to be sold or decreases in Quality", function() {
+  let initialQuality = 20, sellIn = 5;
+  const gildedRose = new Shop([ new Item('Sulfuras, Hand of Ragnaros', sellIn, initialQuality) ]);
+  const items = gildedRose.updateQuality();
+
+  it("Should never decrease Quality", function() {
+    expect(items[0].quality).to.equal(initialQuality);
+  });
+
+  it("Should never has to be sold", function() {
+    expect(items[0].sellIn).to.equal(sellIn);
+  });
+
+});
+
