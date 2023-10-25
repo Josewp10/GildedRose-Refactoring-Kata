@@ -17,9 +17,9 @@ class Shop {
     }
   }
 
-  increaseQuality(item) {
+  increaseQuality(item, factor) {
     if (item.quality < 50) {
-      item.quality++;
+      item.quality = item.quality + factor;
     }
   }
 
@@ -32,15 +32,15 @@ class Shop {
           this.decreaseQuality(currentItem,1);
         }else if (currentItem.name == 'Conjured') this.decreaseQuality(currentItem,2);
       } else {
-        this.increaseQuality(currentItem);
+        this.increaseQuality(currentItem,1);
 
         if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
           if (currentItem.sellIn < 11) {
-            this.increaseQuality(currentItem);
+            this.increaseQuality(currentItem,1);
           }
 
           if (currentItem.sellIn < 6) {
-            this.increaseQuality(currentItem);
+            this.increaseQuality(currentItem,1);
           }
         }
       }
@@ -59,7 +59,7 @@ class Shop {
             currentItem.quality = 0;
           }
         } else {
-          this.increaseQuality(currentItem);
+          this.increaseQuality(currentItem,1);
         }
       }
 
