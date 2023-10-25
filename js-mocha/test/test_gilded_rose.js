@@ -64,3 +64,27 @@ describe("Sulfuras, being a legendary item, never has to be sold or decreases in
 
 });
 
+describe("Backstage passes", function() {
+
+  it("should foo", function() {
+    const gildedRose = new Shop([ new Item('Backstage passes to a TAFKAL80ETC concert', 12, 10) ]);
+    let items = gildedRose.items;
+    let sellDays,pQuality;
+    
+    for (let i = 0; i < 13; i++) {
+      pQuality = items[0].quality;
+      items = gildedRose.updateQuality();
+      sellDays = items[0].sellIn;
+
+      if(sellDays > 5 && sellDays <= 10) {
+        expect(items[0].quality).to.equal(pQuality+2);
+      }else if(sellDays >=0 && sellDays <= 5){
+        expect(items[0].quality).to.equal(pQuality+3);
+      }else if(sellDays<0){
+        expect(items[0].quality).to.equal(0);
+      }      
+    }
+    
+  });
+
+});
